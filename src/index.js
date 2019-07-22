@@ -74,12 +74,14 @@ expressApp.set('views', path.resolve(__dirname, 'views'));
 
 const parse = bodyParser.urlencoded({ extended: false });
 
+// Middleware that defines no cache headers
 function setNoCache(req, res, next) {
   res.set('Pragma', 'no-cache');
   res.set('Cache-Control', 'no-cache, no-store');
   next();
 }
 
+// Define the interaction route
 expressApp.get('/interaction/:uid', setNoCache, async (req, res, next) => {
   try {
     const details = await oidc.interactionDetails(req);
@@ -111,6 +113,7 @@ expressApp.get('/interaction/:uid', setNoCache, async (req, res, next) => {
   }
 });
 
+// Define the login interaction route
 expressApp.post('/interaction/:uid/login', setNoCache, parse, async (req, res, next) => {
   try {
     const { uid, prompt, params } = await oidc.interactionDetails(req);
