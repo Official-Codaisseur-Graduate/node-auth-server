@@ -7,7 +7,7 @@ In order to properly implement the server, we will have to follow a plan.
 
 - [x] Implement Auth Server and Publish it to Heroku.
 - [ ] Create a couple of API (Resource Servers) that need protection.
-- [ ] Decide if we will use Server Side Rendering (.ejs) or React.js
+- [x] Decide if we will use Server Side Rendering (.ejs) or React.js
 - [ ] Decide on the supported flows 
 
 **More details TBA...**

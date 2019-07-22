@@ -1,13 +1,23 @@
-const Redis = require('ioredis'); // eslint-disable-line import/no-unresolved
+// Import the necessary modules
+const Redis = require('ioredis');
+const config = require('./config');
 const { isEmpty } = require('lodash');
 
-const client = new Redis(process.env.REDIS_URL, { keyPrefix: 'oidc:' });
+// Initialize a REDIS client using the Redis URL provided
+const client = new Redis(config.STORES.REDIS_URL, {
+  keyPrefix: 'oidc:'
+});
 
+// Define what will be consumed by this app
 const consumable = new Set([
   'AuthorizationCode',
   'RefreshToken',
   'DeviceCode',
 ]);
+
+/**
+ * FUNCTIONS
+ */
 
 function grantKeyFor(id) {
   return `grant:${id}`;
@@ -21,10 +31,15 @@ function uidKeyFor(uid) {
   return `uid:${uid}`;
 }
 
+/**
+ * Class that defines the Redis Adapter
+ */
 class RedisAdapter {
+
   constructor(name) {
     this.name = name;
   }
+
 
   async upsert(id, payload, expiresIn) {
     const key = this.key(id);

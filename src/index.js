@@ -1,15 +1,15 @@
 // see previous example for the things that are not commented
-
+const config = require('./config');
 const assert = require('assert');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const Provider = require('oidc-provider');
 
-assert(process.env.HEROKU_APP_NAME, 'process.env.HEROKU_APP_NAME missing');
-assert(process.env.PORT, 'process.env.PORT missing');
-assert(process.env.SECURE_KEY, 'process.env.SECURE_KEY missing, run `heroku addons:create securekey`');
-assert.equal(process.env.SECURE_KEY.split(',').length, 2, 'process.env.SECURE_KEY format invalid');
+assert(config.APP.APP_NAME, 'process.env.HEROKU_APP_NAME missing');
+assert(config.APP.PORT, 'process.env.PORT missing');
+assert(config.SECURITY.SECURE_KEY, 'process.env.SECURE_KEY missing, run `heroku addons:create securekey`');
+assert.equal(config.SECURITY.SECURE_KEY.split(',').length, 2, 'config.SECURITY.SECURE_KEY format invalid');
 assert(process.env.REDIS_URL, 'process.env.REDIS_URL missing, run `heroku-redis:hobby-dev`');
 
 const RedisAdapter = require('./redis_adapter');
