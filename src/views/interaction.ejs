@@ -5,6 +5,9 @@
 <ul>
   <% if ([details.scopes.accepted, details.scopes.rejected, details.claims.accepted, details.claims.rejected].every(({ length }) => length === 0)) { %>
   <li>this is a new authorization</li>
+
+  <!-- Add App Name -->
+  <li><%= client.clientName %> is requesting access to the following:</li>
   <% } %>
 
   <% if ([details.scopes.new, details.claims.new].every(({ length }) => length === 0)) { %>

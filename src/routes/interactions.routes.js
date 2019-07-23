@@ -58,7 +58,6 @@ module.exports = (app, provider) => {
 
                     const account = await provider.Account.findAccount(undefined, session.accountId);
                     const { email } = await account.claims('prompt', 'email', { email: null }, []);
-
                     return res.render('select_account', {
                         client,
                         uid,

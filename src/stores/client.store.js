@@ -71,6 +71,7 @@
 const CLIENTS = [
     {
         client_id: 'foo',
+        client_name: 'Example Backend',
         redirect_uris: ['https://example.com'],
         response_types: ['id_token'],
         grant_types: ['implicit'],
