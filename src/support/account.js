@@ -1,5 +1,6 @@
 const assert = require('assert');
 const _ = require('lodash');
+const accountService = require('./../services/account.service');
 const USERS = require('./../stores/user.store');
 
 class Account {
@@ -8,34 +9,53 @@ class Account {
     this.accountId = id; // the property named accountId is important to oidc-provider
   }
 
-  // claims() should return or resolve with an object with claims that are mapped 1:1 to
-  // what your OP supports, oidc-provider will cherry-pick the requested ones automatically
-  claims() {
-    return Object.assign({}, USERS[this.accountId], {
-      sub: this.accountId,
-    });
+  claims = () => {
+    return accountService.getClaimsById(this.accountId).then(c => c);
   }
 
   static async findById(ctx, id) {
-    // this is usually a db lookup, so let's just wrap the thing in a promise, oidc-provider expects
-    // one
     return new Account(id);
   }
 
+  // Authenticates the user
   static async authenticate(email, password) {
     try {
+      // Perform assertions
       assert(password, 'password must be provided');
       assert(email, 'email must be provided');
       const lowercased = String(email).toLowerCase();
       const id = _.findKey(USERS, { email: lowercased });
-      assert(id, 'invalid credentials provided');
 
-      // this is usually a db lookup, so let's just wrap the thing in a promise
-      return new this(id);
-    } catch (err) {
+      // Perform authentication
+      return accountService
+        .authenticate(lowercased, password)
+        .then(result => {
+          // Assert result to validate credentials
+          assert(result, 'invalid credentials provided');
+          return new Account(result);
+        })
+    }
+    catch (err) {
+      // Return undefined
       return undefined;
     }
   }
+
+  // static async authenticate(email, password) {
+  //   try {
+  //     assert(password, 'password must be provided');
+  //     assert(email, 'email must be provided');
+  //     const lowercased = String(email).toLowerCase();
+  //     const id = _.findKey(USERS, { email: lowercased });
+  //     assert(id, 'invalid credentials provided');
+
+  //     // this is usually a db lookup, so let's just wrap the thing in a promise
+  //     return new this(id);
+  //   }
+  //   catch (err) {
+  //     return undefined;
+  //   }
+  // }
 }
 
 module.exports = Account;

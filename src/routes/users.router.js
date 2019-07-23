@@ -19,42 +19,7 @@ router.post('/signup', userService.register);
 
 // Endpoint that retrieves a list of users
 // TODO: This endpoing must be protected and only admin can retrieve data
-router.get('/', (req, res) => {
-    // Define an array of users
-    const users = [];
-
-    Object.keys(USERS).map(function (id, index) {
-        // Create a new user
-        let newUser = { id };
-
-        // Claims object
-        let claims = USERS[id];
-
-        // Retrieve all the claims needed
-        newUser["email"] = claims["email"] || null;
-        newUser["firstName"] = claims["first_name"] || null;
-        newUser["lastName"] = claims["last_name"] || null;
-        newUser["dateOfBirth"] = claims["dob"] || null;
-        newUser["gender"] = claims["gender"] || null;
-
-        // Add the user
-        users.push(newUser);
-    });
-
-
-    // // Define what details should be returned
-    // // Map through all the users
-    // USERS.map((id, claims) => {
-    //     // Create a new user
-    //     let newUser = { id };
-    //     // Retrieve all the claims needed
-    //     claims.map((name, value) => newUser[name] = value);
-    //     // Push the user to the list
-    //     users.push(newUser);
-    // });
-
-    res.status(200).send({ users });
-})
+router.get('/', userService.getAll);
 
 // Export the router
 module.exports = router;

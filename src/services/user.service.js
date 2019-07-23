@@ -7,8 +7,6 @@ const User = require('./../entities/user.entity');
  */
 const register = (req, res, next) => {
 
-    console.log(req.body)
-
     // Retrieve the user data
     const { email, firstName, lastName,
         gender, dateOfBirth, password, passwordConfirmation
@@ -53,6 +51,14 @@ const register = (req, res, next) => {
         })
         .catch(e => next(e));
 }
+/**
+ * Method that returns a list of users and their claims
+ */
+const getAll = (req, res, next) => {
+    return User.findAll({
+        include: ["claims"]
+    }).then(result => res.status(200).send(result));
+}
 
 // Expor the functions
-module.exports = { register };
+module.exports = { register, getAll };

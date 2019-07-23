@@ -34,19 +34,19 @@ module.exports = {
     // setting a nested route is just good practice so that users
     // don't run into weird issues with multiple interactions open
     // at a time.
-    interactionUrl(ctx) {
-        return `/interaction/${ctx.oidc.uid}`;
-    },
+    // interactionUrl(ctx) {
+    //     return `/interaction/${ctx.oidc.uid}`;
+    // },
     /**
      * OR THE FOLLOWING
      */
-    // // Assign any Iinteractions
-    // interactions: {
-    //     policy: interactions,
-    //     url(ctx, interaction) {
-    //         return `/interaction/${ctx.oidc.uid}`;
-    //     },
-    // },
+    // Assign any Iinteractions
+    interactions: {
+        policy: interactions,
+        url(ctx, interaction) {
+            return `/interaction/${ctx.oidc.uid}`;
+        },
+    },
 
 
     // Define Cookies Properties

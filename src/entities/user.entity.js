@@ -30,7 +30,11 @@ const User = db.define('user', {
     dateOfBirth: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    // password: {
+    //     type: Sequelize.STRING,
+    //     allowNull: false
+    // }
 }, {
         tableName: 'users',
         timestamps: false
