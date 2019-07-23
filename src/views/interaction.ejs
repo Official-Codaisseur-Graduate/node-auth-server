@@ -2,23 +2,20 @@
   <% if (client.logoUri) { %><img src="<%= client.logoUri %>"><% } %>
 </div>
 
-<ul>
-  <% if ([details.scopes.accepted, details.scopes.rejected, details.claims.accepted, details.claims.rejected].every(({ length }) => length === 0)) { %>
-  <li>this is a new authorization</li>
+<% if ([details.scopes.accepted, details.scopes.rejected, details.claims.accepted, details.claims.rejected].every(({ length }) => length === 0)) { %>
+  <p class="app-info"><span><%= client.clientName %></span> is requesting access to the following info:</p>
+<% } %>
 
-  <!-- Add App Name -->
-
-  <li><%= client.clientName %> is requesting access to the following:</li>
+<% if ([details.scopes.new, details.claims.new].every(({ length }) => length === 0)) { %>
+  <p class="app-info">the client is asking you to confirm previously given authorization</p>
   <% } %>
 
-  <% if ([details.scopes.new, details.claims.new].every(({ length }) => length === 0)) { %>
-  <li>the client is asking you to confirm previously given authorization</li>
-  <% } %>
+<ul class="main-list">
 
   <% newScopes = new Set(details.scopes.new); newScopes.delete('openid'); newScopes.delete('offline_access') %>
   <% if (newScopes.size) { %>
-  <li>scopes:</li>
-  <ul>
+  <li>Scopes:</li>
+  <ul class="sub-list">
     <% newScopes.forEach((scope) => { %>
     <li><%= scope %></li>
     <% }) %>
@@ -27,23 +24,24 @@
 
   <% newClaims = new Set(details.claims.new); ['sub', 'sid', 'auth_time', 'acr', 'amr', 'iss'].forEach(Set.prototype.delete.bind(newClaims)) %>
   <% if (newClaims.size) { %>
-  <li>claims:</li>
-  <ul>
+  <li>Claims:</li>
+  <ul class="sub-list">
     <% newClaims.forEach((claim) => { %>
     <li><%= claim %></li>
     <% }) %>
   </ul>
   <% } %>
-
-  <% if (params.scope && params.scope.includes('offline_access')) { %>
-  <li>
-    the client is asking to have offline access to this authorization
-    <% if (!details.scopes.new.includes('offline_access')) { %>
-    (which you've previously granted)
-    <% } %>
-  </li>
-  <% } %>
 </ul>
+
+<% if (params.scope && params.scope.includes('offline_access')) { %>
+<p class="app-info">
+  The client is asking to have offline access to this authorization
+  <% if (!details.scopes.new.includes('offline_access')) { %>
+  (which you've previously granted)
+  <% } %>
+</p>
+<% } %>
+
 <form autocomplete="off" action="/interaction/<%= uid %>/confirm" method="post">
   <button autofocus type="submit" class="login login-submit">Continue</button>
 </form>
