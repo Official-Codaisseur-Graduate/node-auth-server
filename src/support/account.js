@@ -1,7 +1,6 @@
 const assert = require('assert');
 const _ = require('lodash');
 const accountService = require('./../services/account.service');
-const USERS = require('./../stores/user.store');
 
 class Account {
 
@@ -24,7 +23,6 @@ class Account {
       assert(password, 'password must be provided');
       assert(email, 'email must be provided');
       const lowercased = String(email).toLowerCase();
-      const id = _.findKey(USERS, { email: lowercased });
 
       // Perform authentication
       return accountService
