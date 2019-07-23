@@ -15,33 +15,7 @@ function uuidv4() {
 }
 
 // Logs in an existing user or creates a new one
-router.post('/signup', (req, res, next) => {
-
-    console.log(req.body.data);
-
-    // Check if details retrieved
-    const { email, firstName, lastName,
-        gender, dateOfBirth, password, passwordConfirmation } = req.body;
-
-    // Generate a new user ID
-    const id = uuidv4();
-
-    // Add user to the db (in this case )
-    USERS[id] = {
-        email,
-        email_verified: false,
-        first_name: firstName,
-        last_name: lastName,
-        gender,
-        dob: dateOfBirth,
-        password
-    }
-
-    // Return a response
-    return res.status(201).send({
-        id: id
-    })
-});
+router.post('/signup', userService.register);
 
 // Endpoint that retrieves a list of users
 // TODO: This endpoing must be protected and only admin can retrieve data
