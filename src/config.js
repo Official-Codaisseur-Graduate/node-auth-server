@@ -18,6 +18,7 @@ module.exports = ({
     STORES: {
         TYPE: 1, // 0: MongoDB, 1: Redis
         REDIS_URL: process.env.REDIS_URL || 'redis://h:paab295f6e314d1bd943a836a4ca879dae40f749a53107c57c99da3f397180a0e@ec2-3-210-129-46.compute-1.amazonaws.com:27459',
-        MONGODB_DB: process.env.MONGODB_URI
+        MONGODB_DB: process.env.MONGODB_URI,
+        DATABASE_URL: process.env.DATABASE_URL || 'postgres://postgres:secret@localhost:5432/postgres'
     }
 });

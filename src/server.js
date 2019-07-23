@@ -6,6 +6,10 @@ const config = require('./config');
 const configuration = require('./support/oidc.config');
 const routes = require('./routes/interactions.routes');
 
+// Import the entities
+const UserEntity = require('./entities/user.entity');
+const ClaimEntity = require('./entities/claim.entity');
+
 // Define a server variable
 let server;
 
