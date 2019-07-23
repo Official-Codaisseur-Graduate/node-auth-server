@@ -1,7 +1,7 @@
 // Import required models
 const Sequelize = require('sequelize');
 const config = require('./config');
-const databaseUrl = config.connectionString;
+const databaseUrl = config.STORES.DATABASE_URL;
 
 // Create a new instance of sequelize
 const sequelize = new Sequelize(databaseUrl);
