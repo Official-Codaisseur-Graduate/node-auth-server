@@ -1,4 +1,5 @@
 const User = require('./../entities/user.entity');
+const bcrypt = require('bcryptjs');
 
 const getClaimsById = async (id) => {
     return User.findOne({
@@ -36,8 +37,7 @@ const authenticate = async (email, password) => {
         // check if user was retrieved
         if (user) {
             // Check if password is correct
-            //if (user.password === password)
-            return user.id;
+            if (bcrypt.compareSync(password, user.password)) return user.id;
         }
         // Otherwise return undefined
         return null;
