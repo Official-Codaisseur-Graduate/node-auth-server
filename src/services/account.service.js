@@ -13,7 +13,8 @@ const getClaimsById = async (id) => {
                 // Define an object with all the user claims
                 const userClaimsObject = {
                     sub: id,
-                    email_verified: true //userClaimsObject.emailConfirmed
+                    email_verified: true //userClaimsObject.emailConfirmed,
+
                 };
 
                 // Map through all the claims
