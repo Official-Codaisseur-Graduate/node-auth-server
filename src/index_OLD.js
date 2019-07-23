@@ -16,7 +16,7 @@ const RedisAdapter = require('./redis_adapter');
 const jwks = require('./jwks.json');
 
 // simple account model for this application, user list is defined like so
-const Account = require('./account');
+const Account = require('./support/account');
 
 const oidc = new Provider(`https://${process.env.HEROKU_APP_NAME}.herokuapp.com`, {
   adapter: RedisAdapter,
@@ -56,7 +56,6 @@ const oidc = new Provider(`https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
   features: {
     // disable the packaged interactions
     devInteractions: { enabled: false },
-
     encryption: { enabled: true },
     introspection: { enabled: true },
     revocation: { enabled: true },

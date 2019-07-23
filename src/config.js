@@ -3,6 +3,7 @@ const assert = require('assert');
 
 // Export the configuration module
 module.exports = ({
+    NODE_ENV: process.env.NODE_ENV || "development",
     APP: {
         APP_NAME: process.env.HEROKU_APP_NAME || 'localhost',
         PORT: process.env.PORT || 5000,
@@ -13,6 +14,8 @@ module.exports = ({
 
     },
     STORES: {
-        REDIS_URL: assert(process.env.REDIS_URL, 'process.env.REDIS_URL missing, run `heroku-redis:hobby-dev`')
+        TYPE: 0, // 0: MongoDB, 1: Redis
+        REDIS_URL: assert(process.env.REDIS_URL, 'process.env.REDIS_URL missing, run `heroku-redis:hobby-dev`'),
+        MONGODB_DB: process.env.MONGODB_URI
     }
 });
