@@ -17,6 +17,8 @@ app.use(jsonParser);
 
 // Define Interaction Definitions
 app.set('view engine', 'ejs');
+console.log("DIRECTORY NAME", __dirname)
+app.use(express.static(__dirname + '/assets'));
 app.set('views', path.resolve(__dirname, 'views'));
 
 // Forward requests to specified routes
