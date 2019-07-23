@@ -20,7 +20,9 @@
     "ioredis": "^4.10.0",
     "lodash": "^4.17.11",
     "nodemon": "^1.19.1",
-    "oidc-provider": "^6.0.0"
+    "oidc-provider": "^6.0.0",
+    "pg": "^7.11.0",
+    "sequelize": "^5.10.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
