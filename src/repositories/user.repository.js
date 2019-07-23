@@ -5,4 +5,17 @@
  */
 module.exports = {
 
+    /**
+     * Method that returns a list of all available users
+     */
+    getAll: () => {
+
+    },
+
+    /**
+     * Method that creates a new user 
+     */
+    create: (data) => {
+
+    }
 }
