@@ -1,3 +1,6 @@
+// Import required modules
+const User = require('./../entities/user.entity');
+
 /**
  * THE USER REPOSITORY
  * Will be used to retrieve users and their claims and will be converting these into a USER model
@@ -8,14 +11,10 @@ module.exports = {
     /**
      * Method that returns a list of all available users
      */
-    getAll: () => {
-
-    },
+    getAll: async () => User.find(),
 
     /**
      * Method that creates a new user 
      */
-    create: (data) => {
-
-    }
+    create: async (userData) => User.create(userData)
 }
