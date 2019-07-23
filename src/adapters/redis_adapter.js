@@ -1,6 +1,6 @@
 // Import the necessary modules
 const Redis = require('ioredis');
-const config = require('./config');
+const config = require('./../config');
 const { isEmpty } = require('lodash');
 
 // Initialize a REDIS client using the Redis URL provided

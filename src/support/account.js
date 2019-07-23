@@ -3,6 +3,7 @@ const _ = require('lodash');
 const USERS = require('./../stores/user.store');
 
 class Account {
+
   constructor(id) {
     this.accountId = id; // the property named accountId is important to oidc-provider
   }

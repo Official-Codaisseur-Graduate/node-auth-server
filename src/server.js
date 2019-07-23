@@ -1,4 +1,5 @@
 // Import requirements
+const Provider = require('oidc-provider');
 const http = require('http');
 const app = require('./app');
 const config = require('./config');
@@ -23,11 +24,11 @@ let server;
         // Retrieve the redis adapter
         adapter = require('./adapters/redis_adapter');
         // Await connection
-        await adapter.connect();
+        // await adapter.connect();
     }
 
     // Create a new provider 
-    const provider = new Provider(ISSUER, { adapter, ...configuration });
+    const provider = new Provider(config.APP.ISSUER, { adapter, ...configuration });
 
     // Check if we are currently on production
     if (config.NODE_ENV === 'production') {
@@ -91,6 +92,3 @@ let server;
     // Define the exit code
     process.exitCode = 1;
 });
-
-
-
