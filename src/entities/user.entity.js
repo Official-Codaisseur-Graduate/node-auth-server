@@ -28,7 +28,7 @@ const User = db.define('user', {
         allowNull: false
     },
     dateOfBirth: {
-        type: Sequelize.DATEONLY,
+        type: Sequelize.STRING,
         allowNull: false
     }
 }, {

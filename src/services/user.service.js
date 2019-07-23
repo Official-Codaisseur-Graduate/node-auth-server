@@ -1,10 +1,14 @@
 // Import required modules
 const userRepository = require('./../repositories/user.repository');
+const User = require('./../entities/user.entity');
 
 /**
  * Method that registers a new user
  */
 const register = (req, res, next) => {
+
+    console.log(req.body)
+
     // Retrieve the user data
     const { email, firstName, lastName,
         gender, dateOfBirth, password, passwordConfirmation
@@ -22,17 +26,15 @@ const register = (req, res, next) => {
                 });
 
                 // Create user
-                const createNewUserObj = { email, firstName, lastName, gender, dateOfBirth, password };
+                const createNewUserObj = { email, firstName, lastName, gender, dateOfBirth, password, emailConfirmed: false };
 
                 // User not found, create a new one
                 User.create(createNewUserObj)
                     .then(u => {
-                        // Define the retrieved data
-                        const { password, ...rest } = u;
                         // Set status 201 :: user created
                         return res.status(201).send({
                             // Return only the user without password
-                            newUser: rest
+                            id: u.id
                         });
                     })
                     .catch(err => {
