@@ -42,7 +42,6 @@ module.exports = (app, provider) => {
         next();
     });
 
-
     app.get('/interaction/:uid', setNoCache, async (req, res, next) => {
         try {
             const {
