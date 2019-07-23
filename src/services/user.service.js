@@ -1,5 +1,5 @@
 // Import required modules
-const userRepository = require('./../repositories/user.repository');
+const bcrypt = require('bcryptjs');
 const User = require('./../entities/user.entity');
 
 /**
@@ -23,8 +23,11 @@ const register = (req, res, next) => {
                     message: "Password and password confirmation do not match!"
                 });
 
+                // Hash password
+                const hashedPassword = bcrypt.hashSync(password, 10);
+
                 // Create user
-                const createNewUserObj = { email, firstName, lastName, gender, dateOfBirth, password, emailConfirmed: false };
+                const createNewUserObj = { email, firstName, lastName, gender, password: hashedPassword, dateOfBirth, emailConfirmed: false };
 
                 // User not found, create a new one
                 User.create(createNewUserObj)

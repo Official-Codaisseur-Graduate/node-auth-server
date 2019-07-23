@@ -19,4 +19,8 @@ In order to properly implement the server, we will have to follow a plan.
 
 
 ## TODOS
-- [ ] Create user database and configure endpoints to perform user manipulations to the database
+- [x] Create user database and configure endpoints to perform user manipulations to the database.
+- [ ] Save user password hashed
+- [ ] Include password salt
+- [ ] Create endpoint where admins can edit user claims (Add/Remove)
+- [ ] 
