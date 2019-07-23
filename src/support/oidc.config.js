@@ -3,7 +3,7 @@ const RedisAdapter = require('./../adapters/redis_adapter');
 const jwks = require('./../support/jwks.json');
 const Account = require('./../support/account');
 const CLIENTS = require('./../stores/client.store');
-const SCOPES = require('./../stores/scope.store');
+const SCOPES = require('./../stores/scopef.store');
 
 // Copies the default policy, already 
 // has login and consent prompt policies
