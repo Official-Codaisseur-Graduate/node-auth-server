@@ -1,5 +1,6 @@
 // Import required modules
 const { Router } = require('express');
+const userService = require('./../services/user.service');
 const USERS = require('./../stores/user.store');
 
 // Create a new router
