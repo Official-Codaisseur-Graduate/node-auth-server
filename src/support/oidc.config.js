@@ -3,6 +3,7 @@ const RedisAdapter = require('./../adapters/redis_adapter');
 const jwks = require('./../support/jwks.json');
 const Account = require('./../support/account');
 const CLIENTS = require('./../stores/client.store');
+const SCOPES = require('./../stores/scope.store');
 
 // Copies the default policy, already 
 // has login and consent prompt policies
@@ -58,14 +59,8 @@ module.exports = {
 
     // Define all the claims we support
     // The property key is the Scope and the value array is the claims under that scope
-    claims: {
-        openid: ['sub'],
-        address: ['address'],
-        email: ['email', 'email_verified'],
-        phone: ['phone_number', 'phone_number_verified'],
-        profile: ['birthdate', 'family_name', 'gender', 'given_name', 'locale', 'middle_name', 'name',
-            'nickname', 'picture', 'preferred_username', 'profile', 'updated_at', 'website', 'zoneinfo'],
-    },
+    claims: SCOPES,
+
     features: {
         devInteractions: { enabled: false }, // defaults to true
         deviceFlow: { enabled: true, ack: 15 }, // defaults to false

@@ -36,7 +36,7 @@ let server;
 
     // Check if we are currently on production
     if (config.NODE_ENV === 'production') {
-
+        console.log("CALLED")
         // During production mode we need to enable some
         // additional variables
         app.enable('trust proxy'); // or app.set('trust proxy', true);
