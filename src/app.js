@@ -6,6 +6,7 @@ const jsonParser = bodyParser.json();
 const cors = require('cors');
 
 // Import routes
+const userRoutes = require('./routes/users.router');
 
 // Instantiate app
 const app = express();
@@ -17,6 +18,9 @@ app.use(jsonParser);
 // Define Interaction Definitions
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, 'views'));
+
+// Forward requests to specified routes
+app.use('/users', userRoutes);
 
 // Export app
 module.exports = app;
