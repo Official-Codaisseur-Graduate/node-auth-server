@@ -5,6 +5,7 @@ const app = require('./app');
 const config = require('./config');
 const configuration = require('./support/oidc.config');
 const routes = require('./routes/interactions.routes');
+const { set } = require('lodash');
 
 // Import the entities
 const UserEntity = require('./entities/user.entity');
@@ -36,7 +37,6 @@ let server;
 
     // Check if we are currently on production
     if (config.NODE_ENV === 'production') {
-        console.log("CALLED")
         // During production mode we need to enable some
         // additional variables
         app.enable('trust proxy'); // or app.set('trust proxy', true);
