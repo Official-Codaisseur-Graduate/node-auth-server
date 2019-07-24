@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Sign-in</title>
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css">
+</head>
+
+<body>
+    <div class="login-card">
+        <h1><%= title %></h1>
+        <%- body %>
+        <div class="login-help">
+            <a href="/interaction/<%= uid %>/abort">[ Cancel ]</a>
+            <% if (client.tosUri) { %>
+            <a href="<%= client.tosUri %>">[ Terms of Service ]</a>
+            <% } %>
+            <% if (client.policyUri) { %>
+            <a href="<%= client.policyUri %>">[ Privacy Policy ]</a>
+            <% } %>
+        </div>
+    </div>
+    <div class="grant-debug">
+        <details>
+            <summary style="text-align: center;">(Click to expand) DEBUG information</summary>
+            <div>
+                <strong>uid</strong>: <%= uid %>
+            </div>
+
+            <% if (session) { %>
+            <div>
+                SESSION <br>
+                ========= <br>
+                <%- session %>
+            </div>
+            <% } %>
+
+            <div>
+                PARAMS <br>
+                ======== <br>
+                <%- dbg.params %>
+            </div>
+
+            <div>
+                PROMPT <br>
+                ======== <br>
+                <%- dbg.prompt %>
+            </div>
+        </details>
+    </div>
+</body>
+
+</html>
