@@ -78,6 +78,15 @@ const CLIENTS = [
         grant_types: ['implicit'],
         token_endpoint_auth_method: 'none',
     },
+    {
+        client_id: 'admin',
+        logo_uri: 'https://d33wubrfki0l68.cloudfront.net/aabea2f28875b44f8712954d3af83f4873d00417/1a57e/static/7973e0827e9a95d808efc18665e7ea4a/94286/ed69318a26037fc8e0a008e061d9e3bd81b8cc3f_thumb_codaisseur-logo-png-77b7ecd336360d5d6a1c96421da8395d.png',
+        client_name: 'Auth Admin    ',
+        redirect_uris: ['https://172.17.0.1:3000', 'https://172.17.0.1:3000/signin-oidc'],
+        response_types: ['id_token'],
+        grant_types: ['implicit'],
+        token_endpoint_auth_method: 'none',
+    },
     // {
     //   client_id: 'oidcCLIENT',
     //   client_secret: '...',
