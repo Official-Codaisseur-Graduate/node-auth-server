@@ -6,11 +6,11 @@ const userService = require('./../services/user.service');
 const router = new Router();
 
 // Logs in an existing user or creates a new one
-router.post('/signup', userService.register);
+router.post('/signup', userService.register); // <=== edit:users
 
 // Endpoint that retrieves a list of users
 // TODO: This endpoing must be protected and only admin can retrieve data
-router.get('/', userService.getAll);
+router.get('/', userService.getAll); // <=== read:users
 
 // Export the router
 module.exports = router;
