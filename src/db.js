@@ -14,7 +14,7 @@ sequelize
         // Log success
         console.log('Database schema created!');
     })
-    .catch(console.log);
+    .catch(console.error);
 
 // Export the sequelize instance
 module.exports = sequelize;
