@@ -80,7 +80,7 @@ const CLIENTS = [
         response_types: ['id_token'],
         grant_types: ['implicit'],
         token_endpoint_auth_method: 'none',
-    }    
+    }
 ];
 
 // Export the array of clients
