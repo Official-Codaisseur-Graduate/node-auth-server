@@ -1,6 +1,7 @@
 // Import required modules
 const { Router } = require('express');
 const userService = require('./../services/user.service');
+const User = require('../entities/user.entity');
 
 // Create a new router
 const router = new Router();
@@ -11,6 +12,21 @@ router.post('/signup', userService.register);
 // Endpoint that retrieves a list of users
 // TODO: This endpoing must be protected and only admin can retrieve data
 router.get('/', userService.getAll);
+
+// Endpoint that admin delete a user from the list
+router.delete('/users/:userId', async (req, res, next) => {
+    try {
+        const user = await User.findbyPk(req.params.userId);
+        if (user.isAdmin === 1) {
+            await User.destroy({ where: { id: req.params.userId } });
+            return res.status(204).end();
+        }
+
+        return res.status(403).end();
+    } catch (error) {
+        next(error);
+    }
+});
 
 // Export the router
 module.exports = router;

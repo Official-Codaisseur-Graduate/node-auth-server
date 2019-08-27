@@ -5,6 +5,7 @@ const app = require('./app');
 const config = require('./config');
 const configuration = require('./support/oidc.config');
 const routes = require('./routes/interactions.routes');
+const { set } = require('lodash');
 
 // Import the entities
 const UserEntity = require('./entities/user.entity');
