@@ -34,6 +34,11 @@ const User = db.define('user', {
     password: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    isAdmin: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        default: 0
     }
 }, {
         tableName: 'users',
