@@ -15,10 +15,10 @@ router.get('/', userService.getAll);
 
 
 // Endpoint that admin delete a user from the list
-router.delete('/users/:userId', (req, res, next) => {
-  const user = User.findbyPk(req.params.userId)
+router.delete('/users/:userId', async (req, res, next) => {
+  const user = await User.findbyPk(req.params.userId)
   if (user.isAdmin === 1) {
-    User
+    await User
       .destroy({
         where: { id: req.params.userId }
       })
