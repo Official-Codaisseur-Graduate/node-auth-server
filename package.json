@@ -19,7 +19,12 @@
     "express": "^4.17.1",
     "express-urlrewrite": "^1.2.0",
     "ioredis": "^4.10.0",
+<<<<<<< Updated upstream
     "lodash": "^4.17.11",
+=======
+    "lodash": "^4.17.15",
+    "morgan": "^1.9.1",
+>>>>>>> Stashed changes
     "nodemon": "^1.19.1",
     "oidc-provider": "^6.0.0",
     "pg": "^7.11.0",
