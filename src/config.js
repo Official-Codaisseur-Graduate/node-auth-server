@@ -25,13 +25,9 @@ module.exports = {
             process.env.REDIS_URL ||
             'redis://h:paab295f6e314d1bd943a836a4ca879dae40f749a53107c57c99da3f397180a0e@ec2-3-210-129-46.compute-1.amazonaws.com:27459',
         MONGODB_DB: process.env.MONGODB_URI,
-<<<<<<< Updated upstream
-        DATABASE_URL: process.env.DATABASE_URL || 'postgres://postgres:secret@localhost:5432/postgres'
-=======
         DATABASE_URL:
             process.env.DATABASE_URL ||
             'postgresql://postgres:secret@localhost:5432/postgres'
         //'postgres://wcsbtdqwmfkpno:d5160fdab36771845230f82def5364ddbe36b012d0b20263f03efffdf1f4c88d@ec2-174-129-226-234.compute-1.amazonaws.com:5432/diqj28rhkq6f'
->>>>>>> Stashed changes
     }
 };
