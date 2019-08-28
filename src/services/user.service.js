@@ -1,6 +1,7 @@
 // Import required modules
 const bcrypt = require('bcryptjs');
 const User = require('./../entities/user.entity');
+const Claim = require('../entities/claim.entity');
 
 /**
  * Method that registers a new user
@@ -63,5 +64,36 @@ const getAll = (req, res, next) => {
     }).then(result => res.status(200).send(result));
 }
 
-// Expor the functions
-module.exports = { register, getAll };
+// Method that admin can remove a user from the list
+const deleteUser = (req, res, next) => {
+    // get the requester user id
+    // query claims if the requester id has claim with name = role ?, value = admin ?
+    return Claim.findOne({ where: { 
+        id: req.params.uid,
+        name: 'role',
+        value: 'admin'
+    } }).then(resultUser => {
+        if(resultUser) {
+            return User
+                .destroy({
+                    where: {
+                    id: req.params.uid
+                    }
+                })
+                .then(userDeleted => {
+                    if (userDeleted) {
+                    return res.status(204).end()
+                    }
+                    return res.status(404).end()
+                })
+                .catch(e => next(e))
+        } else{
+            //
+            return res.status(403).end()
+        }
+    }).catch(e => next(e))
+}
+
+
+// Export the functions
+module.exports = { register, getAll, deleteUser };
