@@ -6,36 +6,39 @@ const db = require('./../db');
 const Claim = require('./claim.entity');
 
 // Define a user model
-const User = db.define('user', {
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false
+const User = db.define(
+    'user',
+    {
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        emailConfirmed: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false
+        },
+        firstName: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        lastName: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        gender: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        dateOfBirth: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false
+        }
     },
-    emailConfirmed: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-    },
-    firstName: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    lastName: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    gender: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    dateOfBirth: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
-    password: {
-        type: Sequelize.STRING,
-        allowNull: false
-    }
-}, {
+    {
         tableName: 'users',
         timestamps: false
     }
