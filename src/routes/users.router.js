@@ -9,13 +9,17 @@ const router = new Router();
 // Logs in an existing user or creates a new one
 router.post('/signup', userService.register);
 
+// Endpoint that add claims
+// This can be use to create role for admin
+router.post('/claim', userService.createUserClaims)
+
 // Endpoint that retrieves a list of users
 // TODO: This endpoing must be protected and only admin can retrieve data
 router.get('/', userService.getAll);
 
 
 // Endpoint that admin delete a user from the list
-router.delete('/users/:uid', userService.deleteUser)
+router.delete('/:uid', userService.deleteUser)
 
 
 // Export the router

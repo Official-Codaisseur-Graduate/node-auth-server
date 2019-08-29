@@ -8,8 +8,11 @@ class Account {
     this.accountId = id; // the property named accountId is important to oidc-provider
   }
 
-  claims = () => {
-    return accountService.getClaimsById(this.accountId).then(c => c);
+  
+  claims = async () => {
+    console.log('hjashdiuashdi', claims)
+    const c = await accountService.getClaimsById(this.accountId);
+    return c;
   }
 
   static async findById(ctx, id) {

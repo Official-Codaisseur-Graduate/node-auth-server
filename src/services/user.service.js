@@ -30,9 +30,12 @@ const register = (req, res, next) => {
                 // Create user
                 const createNewUserObj = { email, firstName, lastName, gender, password: hashedPassword, dateOfBirth, emailConfirmed: false };
 
+                console.log('kjashdkjhasdhasd', createNewUserObj)
+
                 // User not found, create a new one
                 User.create(createNewUserObj)
                     .then(u => {
+                        console.log('kjashdkjhasdhasd', createNewUserObj)
                         // Set status 201 :: user created
                         return res.status(201).send({
                             // Return only the user without password
@@ -40,6 +43,7 @@ const register = (req, res, next) => {
                         });
                     })
                     .catch(err => {
+                        console.log("error", err)
                         // User not created, return error
                         return res.status(500).send({
                             message: "Cannot create user. Please try again later"
@@ -66,34 +70,88 @@ const getAll = (req, res, next) => {
 
 // Method that admin can remove a user from the list
 const deleteUser = (req, res, next) => {
+    const userId = req.headers.userid
     // get the requester user id
     // query claims if the requester id has claim with name = role ?, value = admin ?
-    return Claim.findOne({ where: { 
-        id: req.params.uid,
-        name: 'role',
-        value: 'admin'
-    } }).then(resultUser => {
-        if(resultUser) {
+    Claim.findOne({
+        where: {
+            userId,
+            name: 'role',
+            value: 'admin'
+        }
+    }).then(async resultUser => {
+        if (resultUser) {
+            //  additional feature
+            //  once the admin deleted the user, the claims that were associated with the user will also delete
+            await Claim.destroy({ where: { userId: req.params.uid } })
             return User
                 .destroy({
                     where: {
-                    id: req.params.uid
+                        id: req.params.uid
                     }
                 })
-                .then(userDeleted => {
+                .then(async userDeleted => {
                     if (userDeleted) {
-                    return res.status(204).end()
+                        return res.status(204).end()
                     }
                     return res.status(404).end()
                 })
                 .catch(e => next(e))
-        } else{
-            //
+        } else {
             return res.status(403).end()
         }
     }).catch(e => next(e))
 }
 
+const createUserClaims = async (req, res, next) => {
+    const {
+        name,
+        value,
+        userId
+    } = req.body
+    // validate if userId exist in database and not null
+    if (userId) {
+        await User.findByPk(userId).then(userData => {
+            console.log(userData)
+        }).catch(() => {
+            return res.status(404).end()
+        })
+    } else {
+        return res.status(400).end()
+    }
+    // validate if name is not nulla
+    if (!name) {
+        return res.status(400).end()
+    }
+    // validate if value is not null
+    if (!value) {
+        return res.status(400).end()
+    }
+
+    let createNewClaim = false
+    // check if name, value and userId is existing in claims if not create claims
+    await Claim
+        .findOne({ where: { name, value, userId } })
+        .then(claimExist => {
+            if (claimExist) {
+                return res.status(400).end()
+            } else {
+                createNewClaim = true
+            }
+        }).catch(() => {
+            createNewClaim = true
+        })
+
+    // create new claim
+    if (createNewClaim) {
+        await Claim
+            .create(req.body)
+            .then(createdClaim => {
+                return res.json(createdClaim)
+            })
+            .catch(next)
+    }
+}
 
 // Export the functions
-module.exports = { register, getAll, deleteUser };
+module.exports = { register, getAll, deleteUser, createUserClaims };
