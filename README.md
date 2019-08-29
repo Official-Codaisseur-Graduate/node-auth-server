@@ -6,8 +6,7 @@ In this project, we will attempt to implement an OIDC (Open ID Connect) Authenti
 In order to properly implement the server, we will have to follow a plan.
 
 - [x] Implement Auth Server and Publish it to Heroku.
-- [ ] Create a couple of API (Resource Servers) that need protection.
-- [x] Decide if we will use Server Side Rendering (.ejs) or React.js
+- [x] Create an API (Resource Server) that need protection.
 - [ ] Decide on the supported flows 
 
 **More details TBA...**
@@ -22,7 +21,6 @@ When using the implicit flow, oidc-provider has a hardcoded check against the us
 
 ## TODOS
 - [x] Create user database and configure endpoints to perform user manipulations to the database.
-- [ ] Save user password hashed
+- [x] Save user password hashed
 - [ ] Include password salt
 - [ ] Create endpoint where admins can edit user claims (Add/Remove)
-- [ ] 

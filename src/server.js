@@ -15,7 +15,6 @@ const ClaimEntity = require('./entities/claim.entity');
 let server;
 
 (async () => {
-
     let adapter;
 
     // Check if a mongo db URI exists
@@ -32,8 +31,11 @@ let server;
         // await adapter.connect();
     }
 
-    // Create a new provider 
-    const provider = new Provider(config.APP.ISSUER, { adapter, ...configuration });
+    // Create a new provider
+    const provider = new Provider(config.APP.ISSUER, {
+        adapter,
+        ...configuration
+    });
 
     // Check if we are currently on production
     if (config.NODE_ENV === 'production') {
@@ -52,22 +54,24 @@ let server;
             } // Otherwise check if method is of type HEAD or GET
             else if (req.method === 'GET' || req.method === 'HEAD') {
                 // Reformat the request to use HTTPS (secure) protocol
-                res.redirect(url.format({
-                    protocol: 'https',
-                    host: req.get('host'),
-                    pathname: req.originalUrl,
-                }));
-            } // In any other case, inform client to use secure protocols 
+                res.redirect(
+                    url.format({
+                        protocol: 'https',
+                        host: req.get('host'),
+                        pathname: req.originalUrl
+                    })
+                );
+            } // In any other case, inform client to use secure protocols
             else {
                 res.status(400).json({
                     error: 'invalid_request',
-                    error_description: 'do yourself a favor and only use https',
+                    error_description: 'do yourself a favor and only use https'
                 });
             }
         });
     }
 
-    // Set the routes using current app and provider   
+    // Set the routes using current app and provider
     routes(app, provider);
 
     // Set app to use the provider callback for all requests
@@ -77,7 +81,7 @@ let server;
     server = http.createServer(app);
 
     // Start listening at specified port
-    server.listen(config.APP.PORT, (e) => {
+    server.listen(config.APP.PORT, e => {
         // Check if there are any errors
         if (e) {
             throw new Error('Internal Server Error');
@@ -88,7 +92,7 @@ let server;
     });
 
     // Catch any errors in the server
-})().catch((err) => {
+})().catch(err => {
     // Close server if error occures and if server is running
     if (server && server.listening) server.close();
     // Log the error
