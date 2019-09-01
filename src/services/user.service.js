@@ -30,12 +30,9 @@ const register = (req, res, next) => {
                 // Create user
                 const createNewUserObj = { email, firstName, lastName, gender, password: hashedPassword, dateOfBirth, emailConfirmed: false };
 
-                console.log('kjashdkjhasdhasd', createNewUserObj)
-
                 // User not found, create a new one
                 User.create(createNewUserObj)
                     .then(u => {
-                        console.log('kjashdkjhasdhasd', createNewUserObj)
                         // Set status 201 :: user created
                         return res.status(201).send({
                             // Return only the user without password

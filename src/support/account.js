@@ -10,7 +10,6 @@ class Account {
 
   
   claims = async () => {
-    console.log('hjashdiuashdi', claims)
     const c = await accountService.getClaimsById(this.accountId);
     return c;
   }

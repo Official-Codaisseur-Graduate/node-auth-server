@@ -77,11 +77,11 @@ const CLIENTS = [
         client_name: 'Auth Admin',
         redirect_uris: ['https://auth-admin-client.herokuapp.com/', 'https://auth-admin-client.herokuapp.com/signin-oidc',
 
-        // Put your ip address here, see the example below
-        // My ip
-
-        'https://192.168.178.31:3000',
-        'https://192.168.178.31:3000/signin-oidc'],
+        // Put your ip address here, see the example below to run locally
+        // 'https://192.168.178.31:3000',
+        // 'https://192.168.178.31:3000/signin-oidc'
+    
+        ],
 
         post_logout_redirect_uris: ['https://auth-admin-client.herokuapp.com/logout/callback'],
         response_types: ['id_token'],
