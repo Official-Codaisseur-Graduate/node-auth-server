@@ -1,7 +1,7 @@
 // Import required modules
 const { Router } = require('express');
 const userService = require('./../services/user.service');
-const User = require('../entities/user.entity')
+const User = require('../entities/user.entity');
 
 // Create a new router
 const router = new Router();
@@ -17,10 +17,8 @@ router.post('/claim', userService.createUserClaims)
 // TODO: This endpoing must be protected and only admin can retrieve data
 router.get('/', userService.getAll);
 
-
 // Endpoint that admin delete a user from the list
 router.delete('/:uid', userService.deleteUser)
 
-
 // Export the router
-module.exports = router
+module.exports = router;
