@@ -34,6 +34,12 @@ In order to properly implement the server, we will have to follow a plan.
 > ### Note on Implicit Flow
 > When using the implicit flow, oidc-provider has a hardcoded check against the use of http & localhost. We must also ensure that the token endpoint is disabled for the client. Whilst this is a good security feature, it makes demos awkward. So, when integrating with your client application, make sure you are using the https scheme and anything other than localhost (something configured via your hosts file works fine), and set the clients token_endpoint_auth_method property to none.
 
+### Note on Forget Password Flow
+> When using Forget password, we need to setup an email account in google.
+> Disable 2-Step Verification on security settings.
+> Allow less secure apps must be toggle on.
+> After setting up the email, update the config file variable for the apps email.
+
 ## TODOS
 - [x] Create user database and configure endpoints to perform user manipulations to the database.
 - [x] Save user password hashed

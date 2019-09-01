@@ -9,6 +9,15 @@ const router = new Router();
 // Logs in an existing user or creates a new one
 router.post('/signup', userService.register);
 
+// endpoint that request link to reset password
+router.post('/forgetPassword', userService.forgetPassword)
+
+// endpoint that check token to reset password
+router.get('/reset', userService.reset)
+
+//  endpoint that update new password 
+router.put('/updatePassword', userService.updatePassword)
+
 // Endpoint that retrieves a list of users
 // TODO: This endpoing must be protected and only admin can retrieve data
 router.get('/', userService.getAll);
