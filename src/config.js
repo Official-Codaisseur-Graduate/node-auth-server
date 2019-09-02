@@ -14,6 +14,10 @@ module.exports = {
                 ? `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
                 : `http://172.16.31.138:${port}`
     },
+    MAIL: {
+        EMAIL: process.env.EMAIL_ADDRESS ? `${process.env.EMAIL_ADDRESS}` : 'codaisseurclass28@gmail.com',
+        PASSWORD: process.env.PASSWORD ? `${process.env.PASSWORD}` : 'c0d@!ss3ur'
+    },
     SECURITY: {
         SECURE_KEY:
             process.env.SECURE_KEY ||
