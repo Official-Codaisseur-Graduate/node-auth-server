@@ -14,6 +14,11 @@ In this project, we will attempt to implement an OIDC (Open ID Connect) Authenti
 - [Well Known Config](https://codaisseur-auth-provider.herokuapp.com/.well-known/openid-configuration) 
     The current well known configuration of the OIDC server.
 
+# Set up the server
+1. Change the DATABASE_URL, make sure that it point to the right database
+2. On the client.store.js add your ip address
+
+
 ## Plan
 In order to properly implement the server, we will have to follow a plan.
 
