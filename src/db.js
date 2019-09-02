@@ -8,7 +8,7 @@ const sequelize = new Sequelize(databaseUrl);
 
 // Sync the data (create schemas)
 sequelize
-    .sync({ force: true })
+    .sync({ force: false })
     .then(r => {
         // Log success
         console.log('Database schema created!');
