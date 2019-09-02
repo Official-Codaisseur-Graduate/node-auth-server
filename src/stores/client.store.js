@@ -78,29 +78,30 @@ const CLIENTS = [
         redirect_uris: [
             'https://auth-admin-client.herokuapp.com/',
             'https://auth-admin-client.herokuapp.com/signin-oidc',
-            // Kamaal
-            'https://172.16.31.138:3000',
-            'https://172.16.31.138:3000/signin-oidc',
+            
             // Rejin
-            'https://172.16.29.165:3000',
-            'https://172.16.29.165:3000/signin-oidc',
-            // Nicola
-            'https://172.16.31.140:3000',
-            'https://172.16.31.140:3000/signin-oidc',
-            // Zoro
-            'https://172.16.29.134:3000',
-            'https://172.16.29.134:3000/signin-oidc'
+            'https://192.168.178.31:3000',
+            'https://192.168.178.31:3000/signin-oidc',
+            //// Kamaal
+            // 'https://172.16.31.138:3000',
+            // 'https://172.16.31.138:3000/signin-oidc',
+            //// Nicola
+            // 'https://172.16.31.140:3000',
+            // 'https://172.16.31.140:3000/signin-oidc',
+            //// Zoro
+            // 'https://172.16.29.134:3000',
+            // 'https://172.16.29.134:3000/signin-oidc'
         ],
         post_logout_redirect_uris: [
             'https://auth-admin-client.herokuapp.com/logout/callback',
-            // Zoro
-            'https://172.16.29.134:3000/logout/callback',
             // Rejin
-            'https://172.16.29.165:3000/logout/callback',
-            // Kamaal
-            'https://172.16.31.138:3000/logout/callback',
-            // Nicola
-            'https://172.16.31.140:3000/logout/callback'
+            'https://192.168.178.31:3000/logout/callback',
+            // // Zoro
+            // 'https://172.16.29.134:3000/logout/callback',
+            // // Kamaal
+            // 'https://172.16.31.138:3000/logout/callback',
+            // // Nicola
+            // 'https://172.16.31.140:3000/logout/callback'
         ],
         response_types: ['id_token'],
         grant_types: ['implicit'],
