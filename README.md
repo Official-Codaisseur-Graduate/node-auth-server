@@ -15,9 +15,20 @@ In this project, we will attempt to implement an OIDC (Open ID Connect) Authenti
     The current well known configuration of the OIDC server.
 
 # Set up the server
-1. Change the DATABASE_URL, make sure that it point to the right database
-2. On the client.store.js add your ip address
+1.  !!! Make sure your node version is above 12.0 !!!
+2. `npm install`
 
+3. Inside the src/hosts.js file:
+- If you are working on your own, localhost should be equal to "localhost"
+- If you are working in a team, one person has to add their ip address to run the server (localhost = "xxx.xxx.xxx")
+
+4. Inside the src/config.js file:
+- If you are in development mode, comment out the long awl url in STORES.DATABASE_URL and uncomment the local postgres url
+- If you are pushing to heroku, comment out the local postgres url and uncomment the long aws url
+
+5. Inside src/stores.js:
+- Add the IP addresses of your collaborators (see the examples that are already in there)
+* These IP addresses need to registered in the back-end while the team is developing; otherwise, nothing will work. The final version -- auth-admin-client.herokuapp.com -- does not require any IP addresses registered other than the first one already in there.
 
 ## Plan
 In order to properly implement the server, we will have to follow a plan.
