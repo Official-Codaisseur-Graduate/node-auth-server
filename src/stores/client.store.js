@@ -68,6 +68,8 @@
  * userinfo_encrypted_response_enc,
  * web_message_uris
  */
+const { localhost } = require('../hosts');
+
 const CLIENTS = [
     // This is the Admin Client that manages users in the oidc-provider
     {
@@ -78,35 +80,37 @@ const CLIENTS = [
         redirect_uris: [
             'https://auth-admin-client.herokuapp.com/',
             'https://auth-admin-client.herokuapp.com/signin-oidc',
-            
-            // Rejin
-            'https://192.168.178.31:3000',
-            'https://192.168.178.31:3000/signin-oidc',
-            //// Kamaal
+
+            // MAIN SERVER
+            `https://${localhost}:3000`,
+            `https://${localhost}:3000/signin-oidc`
+
+            //// examples
             // 'https://172.16.31.138:3000',
             // 'https://172.16.31.138:3000/signin-oidc',
-            //// Nicola
+
             // 'https://172.16.31.140:3000',
             // 'https://172.16.31.140:3000/signin-oidc',
-            //// Zoro
+
             // 'https://172.16.29.134:3000',
             // 'https://172.16.29.134:3000/signin-oidc'
         ],
         post_logout_redirect_uris: [
             'https://auth-admin-client.herokuapp.com/logout/callback',
-            // Rejin
-            'https://192.168.178.31:3000/logout/callback',
-            // // Zoro
+
+            // MAIN SERVER
+            `https://${localhost}:3000/logout/callback`
+
+            //// examples
             // 'https://172.16.29.134:3000/logout/callback',
-            // // Kamaal
+
             // 'https://172.16.31.138:3000/logout/callback',
-            // // Nicola
+
             // 'https://172.16.31.140:3000/logout/callback'
         ],
         response_types: ['id_token'],
         grant_types: ['implicit'],
         token_endpoint_auth_method: 'none'
-
     }
 ];
 
